@@ -11,11 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.auditing.backend.service",
-		"com.auditing.security", "com.auditing.view" })
+@ComponentScan(basePackages = { "com.auditing.backend.service", "com.auditing.security", "com.auditing.view" })
 @Configuration
-@Import({ AuthenticationSecurityConfig.class,
-		PersistenceJPAConfig.class, InitialDataConfig.class })
+@Import({ AuthenticationSecurityConfig.class, PersistenceJPAConfig.class, InitialDataConfig.class, AOPConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -26,8 +24,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void configureDefaultServletHandling(
-			DefaultServletHandlerConfigurer configurer) {
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
 

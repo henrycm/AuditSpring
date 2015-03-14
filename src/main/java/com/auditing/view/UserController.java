@@ -1,6 +1,7 @@
 package com.auditing.view;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,7 @@ import com.auditing.backend.service.UserService;
 @Controller
 public class UserController {
 
-	@Autowired
+	@Resource
 	UserService uservice;
 
 	@RequestMapping(value = "/")

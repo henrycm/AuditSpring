@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class AuthenticationSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Resource
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+		auth.inMemoryAuthentication().withUser("john").password("password").roles("USER");
 	}
 
 	@Override
