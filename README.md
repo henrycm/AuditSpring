@@ -1,6 +1,6 @@
 # AuditSpring
 
-- import maven project and run in a container like Tomcat, User:john, password:password
+- Import maven project and run in a container like Tomcat, User:john, password:password
 
 
 Audit with Spring AOP
