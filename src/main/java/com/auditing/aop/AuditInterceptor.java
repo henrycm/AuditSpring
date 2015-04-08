@@ -14,16 +14,22 @@ public class AuditInterceptor {
 	@Before("execution(* com.auditing.backend.repositories.*.save(..))")
 	public void logBefore(JoinPoint aPoint) {
 		String userName = getUserName();
-		String entry = "Saving User:" + userName;
+		String className = "";
+		String methodName = "";
+		String entry = "Executing-> Method: ";
 		if (aPoint.getArgs().length > 0) {
-			entry += ", Data:" + aPoint.getArgs()[0];
+			className = aPoint.getArgs()[0].getClass().getSimpleName();
+			methodName = aPoint.getSignature().getName();
+			entry += methodName + ", Object: " + className + ", UserName: "
+					+ userName + ", Data:" + aPoint.getArgs()[0];
 			log.info(entry);
 		}
 	}
 
 	private String getUserName() {
 		try {
-			return SecurityContextHolder.getContext().getAuthentication().getName();
+			return SecurityContextHolder.getContext().getAuthentication()
+					.getName();
 		} catch (NullPointerException npe) {
 			return "Unknown";
 		}
