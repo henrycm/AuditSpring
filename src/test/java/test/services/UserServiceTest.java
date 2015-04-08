@@ -11,13 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import test.config.TestConfigApp;
-
+import com.auditing.backend.model.User;
 import com.auditing.backend.service.UserService;
+import com.auditing.config.AppConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {
-		com.auditing.config.PersistenceJPAConfig.class, TestConfigApp.class })
+@ContextConfiguration(classes = { AppConfig.class })
 public class UserServiceTest {
 
 	private Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
@@ -29,5 +28,15 @@ public class UserServiceTest {
 		assertNotNull(
 				"User with username: henrycm should be loaded from sql -> ",
 				ds.getUser("henrycm"));
+	}
+
+	@Test
+	public void insert() {
+		logger.debug("Inserting user...");
+		User u = new User();
+		u.setId(10L);
+		u.setUsername("TestUser1");
+		u.setPassword("Test1User");
+		assertNotNull("Inserting user..", ds.save(u));
 	}
 }

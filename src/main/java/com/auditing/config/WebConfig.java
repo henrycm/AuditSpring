@@ -1,7 +1,6 @@
 package com.auditing.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -10,10 +9,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@EnableWebMvc
-@ComponentScan(basePackages = { "com.auditing.backend.service", "com.auditing.security", "com.auditing.view" })
 @Configuration
-@Import({ AuthenticationSecurityConfig.class, PersistenceJPAConfig.class, InitialDataConfig.class, AOPConfig.class })
+@EnableWebMvc
+@Import({ AuthenticationSecurityConfig.class, AppConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -24,7 +22,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	public void configureDefaultServletHandling(
+			DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
 
