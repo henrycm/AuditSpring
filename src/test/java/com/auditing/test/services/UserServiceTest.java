@@ -1,4 +1,4 @@
-package test.services;
+package com.auditing.test.services;
 
 import static org.junit.Assert.assertNotNull;
 
